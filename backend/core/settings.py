@@ -82,11 +82,17 @@ import dj_database_url
 import os
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL', 'postgres://veluxe:veluxe@localhost:5432/veluxe'),
-        conn_max_age=600
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default=os.environ.get('DATABASE_URL', 'postgres://veluxe:veluxe@localhost:5432/veluxe'),
+#         conn_max_age=600
+#     )
+# }
 
 
 # Password validation
