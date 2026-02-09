@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-premium-black text-white font-sans antialiased;
+}
+
+/* Glassmorphism Utility */
+.glass {
+  @apply bg-white/5 backdrop-blur-md border border-white/10;
+}
+
+/* Gold Gradient Text */
+.text-gradient-gold {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-premium-gold to-yellow-200;
+}

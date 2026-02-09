@@ -1,0 +1,28 @@
+services:
+  db:
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=veluxe
+      - POSTGRES_USER=veluxe
+      - POSTGRES_PASSWORD=veluxe
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: ./backend
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=1
+      - SECRET_KEY=django-insecure-dev-key-change-me
+      - DATABASE_URL=postgres://veluxe:veluxe@db:5432/veluxe
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
