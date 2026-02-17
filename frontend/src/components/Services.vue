@@ -46,10 +46,15 @@ const fetchServices = async () => {
 };
 
 const formatCurrency = (value: string | number) => {
-  return Number(value).toLocaleString("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  });
+  const val = Number(value);
+  if (isNaN(val)) return "R$ 0,00";
+  return (
+    "R$ " +
+    val.toLocaleString("pt-BR", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    })
+  );
 };
 
 onMounted(() => {
@@ -68,19 +73,19 @@ onMounted(() => {
           <h2 class="text-5xl font-display font-bold text-white uppercase tracking-tight">Programas Exclusivos</h2>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
           <div v-for="combo in combos" :key="combo.id" 
                class="bg-[#111] border border-white/5 shadow-2xl relative overflow-hidden group flex flex-col h-full">
             
             <!-- Header -->
-            <div class="bg-premium-black pt-12 pb-8 text-center border-b border-white/5">
+            <div class="bg-premium-black pt-12 pb-8 text-center border-b border-white/5 flex-shrink-0">
               <h3 class="text-3xl font-display font-bold text-white mb-2 tracking-tight uppercase">{{ combo.name }}</h3>
               <div class="w-16 h-1 bg-premium-gold mx-auto"></div>
             </div>
 
-            <!-- Features -->
-            <div class="p-10 bg-[#161616] flex-grow">
-              <ul class="space-y-5 min-h-[320px]">
+            <!-- Features Area - Takes available space to push banners down -->
+            <div class="p-10 bg-[#161616] flex-grow flex flex-col">
+              <ul class="space-y-5 flex-grow">
                 <li v-for="feat in combo.features" :key="feat.order" 
                     class="flex items-start text-gray-300 text-lg">
                   <span class="mr-4 text-premium-gold bg-premium-gold/10 p-1 mt-1 rounded-full flex-shrink-0">
@@ -91,8 +96,8 @@ onMounted(() => {
               </ul>
             </div>
 
-            <!-- Warranty/Time Banner -->
-            <div class="bg-premium-black py-4 px-10 flex flex-col gap-2 border-y border-white/5">
+            <!-- Warranty/Time Banner - Fixed Position relative to pricing -->
+            <div class="bg-premium-black py-4 px-10 flex flex-col gap-2 border-y border-white/5 flex-shrink-0">
               <div class="flex items-center text-gray-400 text-xs font-bold uppercase tracking-widest">
                 <span class="text-xl mr-3 leading-none opacity-50">🛡️</span> Garantia de {{ combo.warranty_time }}
               </div>
@@ -101,8 +106,8 @@ onMounted(() => {
               </div>
             </div>
 
-            <!-- Pricing -->
-            <div class="p-12 text-center bg-[#EAEAEA] mt-auto">
+            <!-- Pricing Area - Fixed Height at Bottom -->
+            <div class="p-12 text-center bg-[#EAEAEA] flex-shrink-0">
               <p class="text-gray-600 font-medium mb-1">
                 Parcelado em <span class="text-black font-bold">até {{ combo.installment_max }}x</span> no cartão
               </p>
@@ -114,7 +119,7 @@ onMounted(() => {
                 {{ formatCurrency(combo.price_start) }}
               </div>
 
-              <button class="w-full bg-black hover:bg-zinc-800 text-white py-5 px-10 text-xl font-bold transition-all duration-300 flex items-center justify-center gap-3">
+              <button class="w-full bg-black hover:bg-zinc-800 text-white py-5 px-10 text-xl font-bold transition-all duration-300 flex items-center justify-center gap-3 rounded-none">
                 <span class="text-2xl text-premium-gold">📱</span> Agendar
               </button>
             </div>
@@ -129,19 +134,19 @@ onMounted(() => {
           <div class="mt-4 h-1 w-24 bg-premium-gold mx-auto"></div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
           <div v-for="item in individuals" :key="item.id" 
-               class="bg-premium-gold overflow-hidden flex flex-col group hover:-translate-y-2 transition-transform duration-300">
+               class="bg-premium-gold overflow-hidden flex flex-col group hover:-translate-y-2 transition-transform duration-300 h-full shadow-xl">
             
             <!-- Icon/Title Area -->
-            <div class="p-8 pb-4">
+            <div class="p-8 pb-4 flex-shrink-0">
                <h3 class="text-3xl font-display font-bold text-black leading-tight mb-4 min-h-[4.5rem] uppercase tracking-tight line-clamp-2">{{ item.name }}</h3>
                <div class="h-[2px] bg-black w-full mb-6 opacity-30"></div>
             </div>
 
-            <!-- Feature list -->
+            <!-- Feature list - Takes available space -->
             <div class="px-8 pb-8 flex-grow">
-               <ul class="space-y-4 min-h-[180px]">
+               <ul class="space-y-4">
                  <li v-for="feat in item.features" :key="feat.order" class="flex items-start text-black font-medium text-sm">
                    <span class="mr-2 text-base leading-none opacity-50">🔘</span> 
                    <span class="leading-tight">{{ feat.description }}</span>
@@ -149,8 +154,8 @@ onMounted(() => {
                </ul>
             </div>
 
-            <!-- Footer Details (Gray) -->
-            <div class="bg-[#D1D1D1] p-0 mt-auto">
+            <!-- Footer Details (Gray) - Forced to bottom -->
+            <div class="bg-[#D1D1D1] p-0 mt-auto flex-shrink-0">
                <div class="p-4 px-8 border-b border-black/5 flex flex-col gap-1 min-h-[80px] justify-center">
                  <div class="flex items-center text-[10px] text-black/60 font-bold uppercase tracking-wider">
                    🛡️ Garantia de {{ item.warranty_time }}
@@ -165,16 +170,16 @@ onMounted(() => {
                    <span class="text-[10px] text-black/50 font-bold uppercase leading-none mb-1">A partir de</span>
                    <span class="text-2xl font-black text-black leading-none">{{ formatCurrency(item.price_start) }}</span>
                  </div>
-                 <button class="bg-[#222] hover:bg-black text-white px-8 flex items-center justify-center gap-2 group-hover:bg-premium-gold group-hover:text-black transition-colors whitespace-nowrap">
+                 <button class="bg-[#222] hover:bg-black text-white px-8 flex items-center justify-center gap-2 group-hover:bg-premium-gold group-hover:text-black transition-colors whitespace-nowrap border-none">
                    <span class="text-lg">💬</span>
                    <span class="text-xs font-bold uppercase">Agendar</span>
                  </button>
                </div>
             </div>
           </div>
-
         </div>
       </div>
+
 
       <!-- Empty State -->
       <div v-if="!loading && !services.length" class="text-center text-gray-500 py-10">
