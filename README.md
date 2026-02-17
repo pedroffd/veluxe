@@ -1,89 +1,77 @@
 # 🏎️ Veluxe - Estética Automotiva Premium
 
-Veluxe é uma plataforma moderna para serviços de estética automotiva, desenvolvida com **Django (Backend)** e **Vue.js 3 + Vite (Frontend)**, focada em performance, design premium e qualidade de código.
+Veluxe é uma plataforma moderna e luxuosa para serviços de estética automotiva de alto padrão, inspirada na excelência da AoRaboni. O projeto oferece uma experiência digital premium para clientes e uma ferramenta robusta de gestão para o proprietário.
+
+## 🔗 Links de Acesso
+
+- **🚀 Site Live (Produção):** [https://veluxe-frontend-production.up.railway.app/](https://veluxe-frontend-production.up.railway.app/)
+- **🔐 Veluxe Manager (Dashboard):** [Acesse aqui](/login)
+  - *Consulte o desenvolvedor para credenciais de acesso.*
+
+---
+
+## ✨ Funcionalidades Principais
+
+- **Landing Page Premium:** Design responsivo, moderno e de alta conversão, focado em mostrar o valor dos serviços.
+- **Catálogo Detalhado:** Exibição dinâmica de 16 serviços reais (Sequências Rubi, Diamante, Bronze e tratamentos individuais).
+- **Atelier Experience:** Página dedicada para mostrar o ambiente físico e o cuidado com os veículos.
+- **Dashboard do Gestor:** Área restrita para cadastro, edição e exclusão de serviços, preços e garantias em tempo real.
+- **Integração API:** Frontend Vue 3 conectado a um Backend Django REST com autenticação segura.
+
+---
 
 ## 🚀 Tecnologias Utilizadas
 
 ### Backend
 - **Framework:** Django & Django REST Framework (DRF)
-- **Database:** PostgreSQL (Produção) / SQLite (Desenvolvimento Local)
-- **Tools:**
-  - `Black`: Formatação de código.
-  - `Flake8`: Linter.
-  - `Isort`: Organização de importações.
-  - `dj-database-url`: Configuração de banco via URL.
+- **Database:** PostgreSQL (Railway)
+- **Tools:** `Black`, `Flake8`, `Isort` (estilização e qualidade).
 
 ### Frontend
 - **Framework:** Vue.js 3 (Composition API) + TypeScript
-- **Build Tool:** Vite
 - **Styling:** Tailwind CSS v3.4 (+ Fonts: Inter & Outfit)
-- **Tools:**
-  - `Biome`: Linter e formatador de alta performance (substitui ESLint/Prettier).
+- **Tools:** `Biome` (Linter & Formatter).
 
 ### Infraestrutura & DevOps
-- **Docker:** Containerização (Dockerfile e docker-compose).
-- **Git Hooks:** `Husky` + `Commitlint` + `Lint-staged` para garantir commits padronizados e código limpo.
+- **Deploy:** Railway (Monorepo com Docker).
+- **Padrões:** Conventional Commits + Husky + Commitlint.
 
 ---
 
-## 🛠️ Instalação e Execução
+## 🛠️ Configuração Local (Desenvolvimento)
 
 ### Pré-requisitos
 - Node.js (v18+)
-- Python (v3.10+)
-- Docker (Opcional, mas recomendado)
+- Python (v3.12+)
+- Docker (Opcional)
 
 ### 1. Backend (Django)
-
 ```bash
 cd backend
 python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
+source venv/bin/activate
 pip install -r requirements.txt
-
-# Migrações e Seed
 python manage.py migrate
-python manage.py shell < seed_services.py # Popula com serviços iniciais
-
-# Rodar Servidor
+python manage.py seed_real_data # Popula com os 16 serviços reais
 python manage.py runserver
 ```
 
-O servidor rodará em `http://localhost:8000`.
-
 ### 2. Frontend (Vue + Vite)
-
 ```bash
 cd frontend
-yarn install  # ou npm install
-yarn dev      # ou npm run dev
+yarn install
+yarn dev
 ```
 
-A aplicação rodará em `http://localhost:5173`.
+---
+
+## 🛡️ Padrões de Qualidade
+
+Este projeto segue rigorosos padrões de qualidade:
+- **Linting:** Automatizado via hooks para garantir código limpo.
+- **Commits:** Padronizados seguindo `Conventional Commits`.
+- **Produção:** Variáveis de ambiente protegidas e banco de dados isolado.
 
 ---
 
-## 🛡️ Padrões de Qualidade (QA)
-
-Este projeto utiliza **Hooks do Git** para garantir qualidade.
-
-### Scripts de Verificação
-- **Backend:** `black .`, `isort .`, `flake8 .`
-- **Frontend:** `npx biome check --write .`
-
-### Commits
-Utilizamos **Conventional Commits**. Mensagens fora do padrão serão rejeitadas.
-- ✅ `feat: adiciona componente de contato`
-- ✅ `fix: corrige erro de conexão`
-- ❌ `fiz o componente` (Bloqueado pelo Commitlint)
-
----
-
-## 📦 Deploy
-
-- **Backend:** Configurado para Railway (usa `whiteNoise` e `gunicorn`).
-- **Frontend:** Configurado para Vercel.
-
----
-
-**Desenvolvido por Pedro Fernandes**
+**Desenvolvido com foco em excelência estética e técnica por Pedro Fernandes.**
