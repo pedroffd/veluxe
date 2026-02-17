@@ -2,7 +2,7 @@
   "name": "veluxe",
   "version": "1.0.0",
   "description": "Estética automotiva - Feito com VueJS e Python",
-  "main": "index.js",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky"
