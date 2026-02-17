@@ -15,7 +15,7 @@ const error = ref<string | null>(null);
 
 const fetchServices = async () => {
   try {
-    const response = await fetch("http://localhost:8000/api/services/");
+    const response = await fetch("/api/services/");
     if (!response.ok) throw new Error("Falha ao carregar serviços");
     services.value = await response.json();
   } catch (err) {

@@ -12,17 +12,22 @@ services:
 
   backend:
     build: ./backend
-    command: python manage.py runserver 0.0.0.0:8000
+    command: gunicorn core.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - ./backend:/app
-    ports:
-      - "8000:8000"
     environment:
       - DEBUG=1
       - SECRET_KEY=django-insecure-dev-key-change-me
       - DATABASE_URL=postgres://veluxe:veluxe@db:5432/veluxe
     depends_on:
       - db
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
 
 volumes:
   postgres_data:
