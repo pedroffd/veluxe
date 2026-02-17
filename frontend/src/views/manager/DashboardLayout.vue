@@ -20,8 +20,6 @@ const handleLogout = () => {
         
         <nav class="hidden md:flex items-center gap-8">
           <router-link to="/manager" class="text-xs font-bold uppercase tracking-widest hover:text-premium-gold transition-colors text-white">Serviços</router-link>
-          <a href="#" class="text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-white transition-colors">Depoimentos</a>
-          <a href="#" class="text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-white transition-colors">Relatórios</a>
         </nav>
       </div>
 
