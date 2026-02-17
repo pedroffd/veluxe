@@ -31,7 +31,7 @@ const equipments = [
     <section class="relative h-[80vh] flex items-center justify-center overflow-hidden">
       <div class="absolute inset-0 z-0">
         <img 
-          src="/Users/pedroffd/.gemini/antigravity/brain/7f025176-572b-4633-8adb-44d0c0809815/veluxe_atelier_hero_1771351699443.png" 
+          src="../assets/atelier-hero.png" 
           alt="Veluxe Atelier" 
           class="w-full h-full object-cover opacity-60 scale-105"
         />
@@ -66,10 +66,11 @@ const equipments = [
           <div class="relative group">
             <div class="absolute -inset-4 border border-premium-gold/30 translate-x-4 translate-y-4 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-700"></div>
             <img 
-              src="/Users/pedroffd/.gemini/antigravity/brain/7f025176-572b-4633-8adb-44d0c0809815/veluxe_atelier_detail_polisher_1771351822751.png" 
+              src="../assets/atelier-detail.png" 
               class="relative z-10 grayscale hover:grayscale-0 transition-all duration-1000" 
               alt="Detailing Detail" 
             />
+
 
           </div>
         </div>
