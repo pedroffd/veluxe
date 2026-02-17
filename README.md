@@ -74,4 +74,4 @@ Este projeto segue rigorosos padrões de qualidade:
 
 ---
 
-**Desenvolvido com foco em excelência estética e técnica por Pedro Fernandes.**
+**Desenvolvido com foco em excelência estética e técnica por Pedro Souza.**
