@@ -24,7 +24,7 @@ class Service(models.Model):
         return f"[{self.get_category_display()}] {self.name}"
 
 class ServiceFeature(models.Model):
-    service = models.ForeignKey(Service, related_name='features', on_status=models.CASCADE)
+    service = models.ForeignKey(Service, related_name='features', on_delete=models.CASCADE)
     description = models.CharField(max_length=200)
     order = models.PositiveIntegerField(default=0)
 
