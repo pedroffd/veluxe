@@ -5,11 +5,7 @@ WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-# Install system dependencies if needed (e.g. for psycopg2 build)
-RUN apt-get update && apt-get install -y \
-    libpq-dev \
-    gcc \
-    && rm -rf /var/lib/apt/lists/*
+# System dependencies are pre-compiled in psycopg2-binary
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
