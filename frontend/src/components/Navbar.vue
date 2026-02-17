@@ -11,10 +11,10 @@ onMounted(() => window.addEventListener("scroll", handleScroll));
 onUnmounted(() => window.removeEventListener("scroll", handleScroll));
 
 const navLinks = [
-  { name: "Início", href: "#" },
-  { name: "Serviços", href: "#services" },
-  { name: "Sobre", href: "#about" },
-  { name: "Contato", href: "#contact" },
+  { name: "Início", to: "/" },
+  { name: "O Ateliê", to: "/espaco" },
+  { name: "Serviços", href: "/#services" },
+  { name: "Sobre", href: "/#about" },
 ];
 </script>
 
@@ -24,19 +24,27 @@ const navLinks = [
     :class="[isScrolled ? 'bg-premium-black/90 backdrop-blur-md py-4 border-b border-white/5' : 'bg-transparent py-6']"
   >
     <div class="container mx-auto px-6 flex justify-between items-center">
-      <a href="#" class="text-2xl font-display font-bold tracking-wider">
+      <router-link to="/" class="text-2xl font-display font-bold tracking-wider">
         VELUXE<span class="text-premium-gold">.</span>
-      </a>
+      </router-link>
       
       <div class="hidden md:flex gap-8 items-center">
-        <a 
-          v-for="link in navLinks" 
-          :key="link.name" 
-          :href="link.href"
-          class="text-gray-300 hover:text-premium-gold transition-colors text-sm uppercase tracking-widest font-medium"
-        >
-          {{ link.name }}
-        </a>
+        <template v-for="link in navLinks" :key="link.name">
+          <router-link 
+            v-if="link.to"
+            :to="link.to"
+            class="text-gray-300 hover:text-premium-gold transition-colors text-sm uppercase tracking-widest font-medium"
+          >
+            {{ link.name }}
+          </router-link>
+          <a 
+            v-else
+            :href="link.href"
+            class="text-gray-300 hover:text-premium-gold transition-colors text-sm uppercase tracking-widest font-medium"
+          >
+            {{ link.name }}
+          </a>
+        </template>
         
         <a 
           href="https://wa.me/5511999999999" 
@@ -49,3 +57,4 @@ const navLinks = [
     </div>
   </nav>
 </template>
+

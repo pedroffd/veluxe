@@ -4,12 +4,18 @@ import LoginView from "../views/LoginView.vue";
 import DashboardLayout from "../views/manager/DashboardLayout.vue";
 import ServiceFormView from "../views/manager/ServiceFormView.vue";
 import ServiceListView from "../views/manager/ServiceListView.vue";
+import SpaceView from "../views/SpaceView.vue";
 
 const routes = [
   {
     path: "/",
     name: "home",
     component: LandingView,
+  },
+  {
+    path: "/espaco",
+    name: "space",
+    component: SpaceView,
   },
   {
     path: "/login",
