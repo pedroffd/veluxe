@@ -75,19 +75,19 @@ onMounted(() => {
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
           <div v-for="combo in combos" :key="combo.id" 
-               class="bg-[#111] border border-white/5 shadow-2xl relative overflow-hidden group flex flex-col h-full">
+               class="bg-[#111] border border-white/5 shadow-2xl relative overflow-hidden group flex flex-col items-stretch">
             
             <!-- Header -->
-            <div class="bg-premium-black pt-12 pb-8 text-center border-b border-white/5 flex-shrink-0">
+            <div class="bg-premium-black pt-12 pb-8 text-center border-b border-white/5">
               <h3 class="text-3xl font-display font-bold text-white mb-2 tracking-tight uppercase">{{ combo.name }}</h3>
               <div class="w-16 h-1 bg-premium-gold mx-auto"></div>
             </div>
 
-            <!-- Features Area - Takes available space to push banners down -->
-            <div class="p-10 bg-[#161616] flex-grow flex flex-col">
-              <ul class="space-y-5 flex-grow">
+            <!-- Features Area -->
+            <div class="p-10 bg-[#161616] flex-1">
+              <ul class="space-y-5">
                 <li v-for="feat in combo.features" :key="feat.order" 
-                    class="flex items-start text-gray-300 text-lg">
+                    class="flex items-start text-gray-300 text-lg text-left">
                   <span class="mr-4 text-premium-gold bg-premium-gold/10 p-1 mt-1 rounded-full flex-shrink-0">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                   </span>
@@ -96,8 +96,8 @@ onMounted(() => {
               </ul>
             </div>
 
-            <!-- Warranty/Time Banner - Fixed Position relative to pricing -->
-            <div class="bg-premium-black py-4 px-10 flex flex-col gap-2 border-y border-white/5 flex-shrink-0">
+            <!-- Warranty/Time Banner -->
+            <div class="bg-premium-black py-4 px-10 flex flex-col gap-2 border-y border-white/5">
               <div class="flex items-center text-gray-400 text-xs font-bold uppercase tracking-widest">
                 <span class="text-xl mr-3 leading-none opacity-50">🛡️</span> Garantia de {{ combo.warranty_time }}
               </div>
@@ -106,8 +106,8 @@ onMounted(() => {
               </div>
             </div>
 
-            <!-- Pricing Area - Fixed Height at Bottom -->
-            <div class="p-12 text-center bg-[#EAEAEA] flex-shrink-0">
+            <!-- Pricing -->
+            <div class="p-12 text-center bg-[#EAEAEA]">
               <p class="text-gray-600 font-medium mb-1">
                 Parcelado em <span class="text-black font-bold">até {{ combo.installment_max }}x</span> no cartão
               </p>
@@ -127,7 +127,7 @@ onMounted(() => {
         </div>
       </div>
 
-      <!-- Individual Treatments Section (Screenshot Style) -->
+      <!-- Individual Treatments Section -->
       <div v-if="individuals.length" class="mt-20">
         <div class="text-center mb-16">
           <h2 class="text-4xl font-display font-bold text-white uppercase tracking-tight">Tratamentos Individuais</h2>
@@ -136,26 +136,26 @@ onMounted(() => {
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
           <div v-for="item in individuals" :key="item.id" 
-               class="bg-premium-gold overflow-hidden flex flex-col group hover:-translate-y-2 transition-transform duration-300 h-full shadow-xl">
+               class="bg-premium-gold overflow-hidden flex flex-col group hover:-translate-y-2 transition-transform duration-300 shadow-xl">
             
             <!-- Icon/Title Area -->
-            <div class="p-8 pb-4 flex-shrink-0">
-               <h3 class="text-3xl font-display font-bold text-black leading-tight mb-4 min-h-[4.5rem] uppercase tracking-tight line-clamp-2">{{ item.name }}</h3>
+            <div class="p-8 pb-4">
+               <h3 class="text-3xl font-display font-bold text-black leading-tight mb-4 min-h-[4.5rem] uppercase tracking-tight line-clamp-2 text-left">{{ item.name }}</h3>
                <div class="h-[2px] bg-black w-full mb-6 opacity-30"></div>
             </div>
 
-            <!-- Feature list - Takes available space -->
-            <div class="px-8 pb-8 flex-grow">
+            <!-- Feature list -->
+            <div class="px-8 pb-8 flex-1">
                <ul class="space-y-4">
-                 <li v-for="feat in item.features" :key="feat.order" class="flex items-start text-black font-medium text-sm">
+                 <li v-for="feat in item.features" :key="feat.order" class="flex items-start text-black font-medium text-sm text-left">
                    <span class="mr-2 text-base leading-none opacity-50">🔘</span> 
                    <span class="leading-tight">{{ feat.description }}</span>
                  </li>
                </ul>
             </div>
 
-            <!-- Footer Details (Gray) - Forced to bottom -->
-            <div class="bg-[#D1D1D1] p-0 mt-auto flex-shrink-0">
+            <!-- Footer Details -->
+            <div class="bg-[#D1D1D1] p-0 mt-auto">
                <div class="p-4 px-8 border-b border-black/5 flex flex-col gap-1 min-h-[80px] justify-center">
                  <div class="flex items-center text-[10px] text-black/60 font-bold uppercase tracking-wider">
                    🛡️ Garantia de {{ item.warranty_time }}
@@ -179,6 +179,7 @@ onMounted(() => {
           </div>
         </div>
       </div>
+
 
 
       <!-- Empty State -->
